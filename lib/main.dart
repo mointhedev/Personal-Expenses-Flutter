@@ -104,7 +104,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
 
-    final PreferredSizeWidget appBar = Platform.isIOS
+    PreferredSizeWidget buildAppBar() {
+      return Platform.isIOS
         ? CupertinoNavigationBar(
             middle: Text("Personal Expenses"),
             trailing: Row(
@@ -128,11 +129,12 @@ class _MyHomePageState extends State<MyHomePage> {
               )
             ],
           );
+    }
 
     final TransListWidget = Container(
       child: TransactionList(_transactions, _deleteTransaction),
       height: (mediaQuery.size.height -
-              appBar.preferredSize.height -
+              buildAppBar().preferredSize.height -
               mediaQuery.padding.top) *
           0.7,
     );
@@ -163,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       _recentTransactions,
                     ),
                     height: (mediaQuery.size.height -
-                            appBar.preferredSize.height -
+                            buildAppBar().preferredSize.height -
                             mediaQuery.padding.top) *
                         0.7,
                   )
@@ -174,7 +176,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 _recentTransactions,
               ),
               height: (mediaQuery.size.height -
-                      appBar.preferredSize.height -
+                      buildAppBar().preferredSize.height -
                       mediaQuery.padding.top) *
                   0.3,
             ),
@@ -186,11 +188,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Platform.isIOS
         ? CupertinoPageScaffold(
-            navigationBar: appBar,
+            navigationBar:buildAppBar(),
             child: pageBody,
           )
         : Scaffold(
-            appBar: appBar,
+            appBar: buildAppBar(),
             body: pageBody,
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
