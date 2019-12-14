@@ -18,36 +18,34 @@ class _NewTransactionState extends State<NewTransaction> {
   DateTime _selectedDate;
 
   void _submitData() {
-
-    if(_amountController.text.isEmpty)
-      return;
+    if (_amountController.text.isEmpty) return;
 
     final enteredTitle = _titleController.text;
     final enteredAmount = double.parse(_amountController.text);
 
-    if (enteredTitle.isEmpty || enteredAmount == 0 ) {
+    if (enteredTitle.isEmpty || enteredAmount == 0) {
       return;
     }
 
-    widget.addNewTransaction(
-        _titleController.text, double.parse(_amountController.text), _selectedDate);
+    widget.addNewTransaction(_titleController.text,
+        double.parse(_amountController.text), _selectedDate);
 
     Navigator.of(context).pop();
   }
 
   void _displayDatePicker() {
     showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2019),
-        lastDate: DateTime.now()).then((pickedDate) {
-          if(pickedDate == null){
-            return;
-          }
-          setState(() {
-          _selectedDate = pickedDate;
-
-          });
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2019),
+            lastDate: DateTime.now())
+        .then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+      setState(() {
+        _selectedDate = pickedDate;
+      });
     });
     print('...');
   }
@@ -58,7 +56,11 @@ class _NewTransactionState extends State<NewTransaction> {
       child: Card(
         elevation: 5,
         child: Container(
-          padding: EdgeInsets.only(top: 10, right: 10, left: 10, bottom: MediaQuery.of(context).viewInsets.bottom + 10),
+          padding: EdgeInsets.only(
+              top: 10,
+              right: 10,
+              left: 10,
+              bottom: MediaQuery.of(context).viewInsets.bottom + 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
@@ -78,8 +80,13 @@ class _NewTransactionState extends State<NewTransaction> {
                 height: 70,
                 child: Row(
                   children: <Widget>[
-                    Text(_selectedDate == null ? "No Date Chosen !" : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}'),
-                    Expanded(flex: 1, child: Container(),),
+                    Text(_selectedDate == null
+                        ? "No Date Chosen !"
+                        : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}'),
+                    Expanded(
+                      flex: 1,
+                      child: Container(),
+                    ),
                     FlatButton(
                       textColor: Theme.of(context).primaryColor,
                       child: Text(

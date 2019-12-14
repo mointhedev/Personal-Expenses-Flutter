@@ -10,33 +10,20 @@ class UserTransactions extends StatefulWidget {
 }
 
 class _UserTransactionsState extends State<UserTransactions> {
-
   final List<Transaction> _transactions = [
-    Transaction
-      (
-        id: 't1',
-        title: 'New Shoes',
-        amount: 69.99,
-        date: DateTime.now()
-    ),
-    Transaction
-      (
-        id: 't2',
-        title: 'Grocery Store',
-        amount: 19.99,
-        date: DateTime.now()
-    ),
-    Transaction
-      (
-        id: 't3',
-        title: 'Laptop',
-        amount: 50.29,
-        date: DateTime.now()
-    ),
+    Transaction(
+        id: 't1', title: 'New Shoes', amount: 69.99, date: DateTime.now()),
+    Transaction(
+        id: 't2', title: 'Grocery Store', amount: 19.99, date: DateTime.now()),
+    Transaction(id: 't3', title: 'Laptop', amount: 50.29, date: DateTime.now()),
   ];
 
-  void _addNewTransaction(String title, double amount, DateTime chosenDate){
-    final newTranscation = Transaction(id: DateTime.now().toString(),title: title, amount: amount, date: DateTime.now());
+  void _addNewTransaction(String title, double amount, DateTime chosenDate) {
+    final newTranscation = Transaction(
+        id: DateTime.now().toString(),
+        title: title,
+        amount: amount,
+        date: DateTime.now());
 
     setState(() {
       _transactions.add(newTranscation);
@@ -48,7 +35,6 @@ class _UserTransactionsState extends State<UserTransactions> {
     return Column(
       children: <Widget>[
         NewTransaction(_addNewTransaction),
-
       ],
     );
   }

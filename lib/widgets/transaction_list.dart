@@ -63,7 +63,11 @@ class TransactionList extends StatelessWidget {
                               deleteTransaction(transactions[index].id),
                           icon: Icon(Icons.delete,
                               color: Theme.of(context).errorColor),
-                          label: Text("Delete", style: TextStyle(color: Theme.of(context).errorColor),))
+                          label: Text(
+                            "Delete",
+                            style:
+                                TextStyle(color: Theme.of(context).errorColor),
+                          ))
                       : IconButton(
                           icon: Icon(Icons.delete,
                               color: Theme.of(context).errorColor),
